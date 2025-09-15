@@ -1,3 +1,6 @@
+// src/components/Header.tsx
+import coach from "@/data/coach";
+
 type Props = { brand: string };
 
 export default function Header({ brand }: Props) {
@@ -8,12 +11,24 @@ export default function Header({ brand }: Props) {
           {brand}
         </a>
 
-        <nav className="hidden md:flex gap-6 text-sm">
+        <nav className="hidden md:flex items-center gap-6 text-sm">
           <a href="#about" className="hover:text-cyan-300 transition-colors">About</a>
           <a href="#programs" className="hover:text-cyan-300 transition-colors">Programs</a>
           <a href="#results" className="hover:text-cyan-300 transition-colors">Results</a>
           <a href="#testimonials" className="hover:text-cyan-300 transition-colors">Testimonials</a>
           <a href="#contact" className="hover:text-cyan-300 transition-colors">Contact</a>
+
+          {coach.instagram && (
+            <a
+              href={coach.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="text-neutral-300 hover:text-white underline underline-offset-4"
+              aria-label="Open Instagram (new tab)"
+            >
+              Instagram
+            </a>
+          )}
         </nav>
 
         {/* POPPY CTA */}
