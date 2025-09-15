@@ -2,7 +2,15 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
-import type { Collage } from "@/data/types";
+
+// Local type to avoid cross-file import issues
+type Collage = {
+  image: string;
+  caption?: string;
+  consent?: boolean;
+  fit?: "cover" | "contain";
+  focusClass?: string; // e.g., "object-center" | "object-left" | "object-right"
+};
 
 export default function Results({ items }: { items: Collage[] }) {
   const safe = (items ?? []).filter((i) => i?.image?.trim());
@@ -48,7 +56,7 @@ export default function Results({ items }: { items: Collage[] }) {
             className="cursor-zoom-in rounded-3xl overflow-hidden bg-neutral-900 ring-1 ring-cyan-500/10 transition hover:ring-cyan-500/25"
             onClick={() => setActive(idx)}
           >
-            {/* Set tile height; use cover by default so all tiles align */}
+            {/* Consistent tile height */}
             <div className="relative h-[260px] md:h-[300px] lg:h-[280px] overflow-hidden">
               <Image
                 src={t.image}
@@ -93,8 +101,7 @@ export default function Results({ items }: { items: Collage[] }) {
 
             {/* Caption + index */}
             <div className="absolute bottom-2 left-0 right-0 mx-auto max-w-4xl text-center text-sm text-neutral-300">
-              {safe[active].caption ?? `Client result ${active + 1}`} •{" "}
-              {active + 1} / {safe.length}
+              {safe[active].caption ?? `Client result ${active + 1}`} • {active + 1} / {safe.length}
             </div>
 
             {/* Controls */}
