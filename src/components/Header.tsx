@@ -36,7 +36,7 @@ export default function Header() {
           <Link href="/#programs" className="hover:text-cyan-300 transition-colors">Programs</Link>
           <Link href="/#results" className="hover:text-cyan-300 transition-colors">Results</Link>
           <Link href="/#testimonials" className="hover:text-cyan-300 transition-colors">Testimonials</Link>
-          <Link href="/#contact" className="hover:text-cyan-300 transition-colors">Contact</Link>
+          <Link href="/contact" className="hover:text-cyan-300 transition-colors">Contact</Link>
           {coach.instagram && (
             <a
               href={coach.instagram}

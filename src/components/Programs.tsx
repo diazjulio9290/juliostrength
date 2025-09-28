@@ -1,24 +1,29 @@
 import type { Plan } from "@/data/types";
+import * as plansMod from "@/data/plans";
 
-type Props = {
-  plans: Plan[];
-};
+type Props = { plans?: Plan[] };
+
+// support named (plans) or default exports without using `any`
+function getPlansFromModule(): Plan[] {
+  const m = plansMod as unknown as { plans?: Plan[]; default?: Plan[] };
+  return m.plans ?? m.default ?? [];
+}
 
 const formatPrice = (n: number) =>
   `$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 
 export default function Programs({ plans }: Props) {
+  const items = (plans && plans.length > 0 ? plans : getPlansFromModule()) ?? [];
+
   return (
     <section id="programs" className="mx-auto max-w-6xl px-4 py-16">
       <div className="flex items-end justify-between gap-4">
-        <h2 className="text-3xl md:text-4xl font-bold">Programs & pricing</h2>
-        <p className="text-sm text-neutral-400">
-          Secure checkout via Stripe or PayPal
-        </p>
+        <h2 className="text-3xl md:text-4xl font-bold">Programs &amp; pricing</h2>
+        <p className="text-sm text-neutral-400">Secure checkout coming soon</p>
       </div>
 
       <div className="mt-8 grid md:grid-cols-3 gap-6">
-        {plans.map((p) => {
+        {items.map((p) => {
           const isHot = Boolean(p.highlight);
           return (
             <div
@@ -41,17 +46,14 @@ export default function Programs({ plans }: Props) {
               <div className="mt-4">
                 <div className="text-4xl font-extrabold">
                   {formatPrice(p.price)}
-                  <span className="text-base font-medium text-neutral-400">
-                    /{p.period}
-                  </span>
+                  <span className="text-base font-medium text-neutral-400">/{p.period}</span>
                 </div>
               </div>
 
               <ul className="mt-4 space-y-2 text-neutral-300">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <span>✔</span>
-                    <span>{f}</span>
+                    <span>✔</span><span>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -67,6 +69,12 @@ export default function Programs({ plans }: Props) {
           );
         })}
       </div>
+
+      {items.length === 0 && (
+        <p className="mt-4 text-sm text-neutral-400">
+          Programs are being updated. Check back soon.
+        </p>
+      )}
     </section>
   );
 }
