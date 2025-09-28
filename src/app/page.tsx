@@ -14,7 +14,6 @@ import Results from "@/components/Results";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 
 /**
  * Main page component for JulioStrength website
@@ -61,7 +60,6 @@ export default function Page() {
       />
 
       {/* Site footer */}
-      <Footer brand={coach.name} />
     </div>
   );
 }

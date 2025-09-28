@@ -35,3 +35,10 @@ export type Coach = {
   instagram: string;
   highlights: string[];
 };
+export type Collage = {
+  image: string;
+  caption?: string;
+  consent?: boolean;
+  fit?: "cover" | "contain";
+  focusClass?: string; // e.g., "object-center" | "object-left" | "object-right"
+};
