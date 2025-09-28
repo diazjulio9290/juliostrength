@@ -1,117 +1,67 @@
-"use client";
+// Data imports - importing all the content data for the page
+import coach from "@/data/coach";
+import plans from "@/data/plans";
+import testimonials from "@/data/testimonials";
+import transformations from "@/data/transformations";
+import faqs from "@/data/faqs";
 
-import { useState, type ChangeEvent } from "react";
-import Link from "next/link";
+// Component imports - importing all the UI components
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Programs from "@/components/Programs";
+import Results from "@/components/Results";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
-// Public envs are baked at build time
-const STRIPE_READY =
-  process.env.NEXT_PUBLIC_STRIPE_READY === "true" &&
-  Boolean(process.env.NEXT_PUBLIC_DEFAULT_PRICE_ID);
-
-export default function CheckoutPage() {
-  const [agreed, setAgreed] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
-
-  const priceId = process.env.NEXT_PUBLIC_DEFAULT_PRICE_ID || "price_placeholder";
-
-  const handleAgree = (e: ChangeEvent<HTMLInputElement>) => {
-    setAgreed(e.target.checked);
-  };
-
-  async function startCheckout() {
-    if (!STRIPE_READY) return;
-    try {
-      setLoading(true);
-      setErr(null);
-
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ priceId, disclaimerVersion: "1.0" }),
-      });
-
-      const data: unknown = await res.json();
-
-      // Narrow the shape we expect from the API
-      if (!res.ok || !data || typeof data !== "object" || !("url" in data)) {
-        const msg =
-          (data && typeof data === "object" && "error" in data && typeof (data as any).error === "string")
-            ? (data as any).error
-            : "Stripe is not ready yet.";
-        setErr(msg);
-        setLoading(false);
-        return;
-      }
-
-      // data.url is present here
-      window.location.href = (data as { url: string }).url;
-    } catch (e: unknown) {
-      const message = e instanceof Error ? e.message : "Unexpected error";
-      setErr(message);
-      setLoading(false);
-    }
-  }
-
+/**
+ * Main page component for JulioStrength website
+ * Renders the complete landing page with all sections
+ */
+export default function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-5 py-12">
-      <h1 className="text-3xl font-semibold">Checkout</h1>
+    <div className="min-h-screen bg-neutral-950 text-neutral-100">
+      {/* Site header with navigation */}
+      <Header brand="JulioStrength" />
 
-      {!STRIPE_READY && (
-        <div className="mt-4 rounded-xl border border-yellow-500/30 bg-yellow-500/10 p-4 text-yellow-200">
-          Payments are coming soon. In the meantime, you can{" "}
-          <Link href="/#contact" className="underline">
-            contact us
-          </Link>
-          .
-        </div>
-      )}
+      {/* Hero section with coach intro and contact info */}
+      <Hero
+        name={coach.name}
+        tagline={coach.tagline}
+        location={coach.location}
+        email={coach.email}
+        instagram={coach.instagram}
+      />
 
-      <div className="mt-6 rounded-2xl border border-neutral-800 p-6 shadow-sm">
-        <h2 className="text-xl font-medium">Disclaimer &amp; Acknowledgment</h2>
-        <p className="mt-3 text-sm leading-6 text-neutral-300">
-          Coaching is educational and not medical advice. Results are not guaranteed. Consult your physician before
-          starting any fitness or nutrition program. By proceeding, you release us from claims related to injuries or
-          outcomes.
-        </p>
+      {/* About section with coach background and highlights */}
+      <About
+        text="After serving in the U.S. Navy, I settled in Portland, Oregon, where I live with my family. I'm an amateur bodybuilder and online coach. I help busy people gain muscle, lose fat, and learn proper lifting mechanics. My approach blends progressive overload, smart periodization, and sustainable nutrition—no crash diets, no gimmicks."
+        highlights={coach.highlights}
+      />
 
-        <label className="mt-4 flex items-start gap-2 text-sm text-neutral-200">
-          <input
-            type="checkbox"
-            className="mt-1"
-            checked={agreed}
-            onChange={handleAgree}
-            required
-          />
-          <span>
-            I have read and agree to the <strong>Disclaimer</strong> above.
-          </span>
-        </label>
+      {/* Training programs and pricing plans */}
+      <Programs plans={plans} />
 
-        {err && <p className="mt-3 text-sm text-red-500">{err}</p>}
+      {/* Client transformation results/before-after photos */}
+      <Results items={transformations} />
 
-        <button
-          onClick={startCheckout}
-          disabled={!agreed || !STRIPE_READY || loading}
-          className={`mt-6 inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold text-white ${
-            !agreed || !STRIPE_READY || loading ? "bg-neutral-700 cursor-not-allowed" : "bg-black hover:bg-black/80"
-          }`}
-        >
-          {STRIPE_READY ? (loading ? "Redirecting…" : "Continue to Secure Payment") : "Payments coming soon"}
-        </button>
+      {/* Client testimonials and reviews */}
+      <Testimonials items={testimonials} />
 
-        <p className="mt-3 text-xs text-neutral-400">
-          You will be redirected to Stripe Checkout when payments are enabled. See our{" "}
-          <Link href="/terms" className="underline">
-            Terms
-          </Link>{" "}
-          and{" "}
-          <Link href="/privacy" className="underline">
-            Privacy
-          </Link>
-          .
-        </p>
-      </div>
-    </main>
+      {/* Frequently asked questions section */}
+      <FAQ items={faqs} />
+
+      {/* Contact information and form */}
+      <Contact 
+        email={coach.email} 
+        phone={coach.phone} 
+        instagram={coach.instagram} 
+      />
+
+      {/* Site footer */}
+      <Footer brand={coach.name} />
+    </div>
   );
 }
