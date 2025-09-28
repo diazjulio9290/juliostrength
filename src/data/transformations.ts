@@ -1,28 +1,28 @@
-// Single-image collages (no before/after split)
+// src/data/transformations.ts
 export type Collage = {
   image: string;
   caption?: string;
   consent?: boolean;
   fit?: "cover" | "contain";
-  focusClass?: string; // e.g., "object-center" | "object-left" | "object-right"
+  focusClass?: string;
 };
 
 const transformations: Collage[] = [
-  {
-    image: "/images/clients/before-after/client1_front_combo.jpg",
-    caption: "Client #1 — 5 months",
-    fit: "cover",
+  { 
+    image: "/images/clients/cliente-1.jpeg",
+    caption: "Client #1 — 5 months", 
+    fit: "cover" 
   },
-  {
-    image: "/images/clients/before-after/client2_front_combo.jpg",
-    caption: "Client #2 — 2 months",
-    fit: "cover",
-    focusClass: "object-center",
+  { 
+    image: "/images/clients/cliente-2.jpeg",
+    caption: "Client #2 — 2 months", 
+    fit: "cover", 
+    focusClass: "object-center" 
   },
-  {
-    image: "/images/clients/before-after/client3_front_combo.jpg",
-    caption: "Jordan S. — 1 month",
-    fit: "cover",
+  { 
+    image: "/images/clients/cliente-3.png",
+    caption: "Client #3 — 1 month",
+    fit: "cover" 
   },
 ];
 
