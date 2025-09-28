@@ -1,27 +1,38 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 type Props = { email: string; phone: string; instagram: string };
 
 const FORM_URL = "https://form.jotform.com/252700973219054";
 
+// simple origin check for Jotform
+const jotformOrigin = (origin: string) =>
+  /^https?:\/\/([a-z0-9-]+\.)*jotform\.com$/i.test(new URL(origin).origin);
+
 export default function Contact({ email, phone, instagram }: Props) {
-  // Auto-resize the Jotform iframe
+  const [frameH, setFrameH] = useState<number>(760); // default visible size
+
   useEffect(() => {
     const onMessage = (e: MessageEvent) => {
-      if (typeof e.data !== "string" || !e.origin.includes("jotform")) return;
-      const [cmd, , h] = e.data.split(":");
-      if (cmd === "setHeight") {
-        const iframe = document.getElementById("jotform-iframe-home") as HTMLIFrameElement | null;
-        const newH = Number(h);
-        if (iframe && Number.isFinite(newH)) iframe.style.height = `${newH}px`;
-      }
+      if (typeof e.data !== "string") return;
+      if (!jotformOrigin(e.origin)) return;
+      if (!e.data.startsWith("setHeight")) return;
+
+      // Messages look like: "setHeight:{id}:{height}"
+      const parts = e.data.split(":");
+      const h = Number(parts.at(-1));
+      if (!Number.isFinite(h)) return;
+
+      // Clamp so it never runs away
+      const clamped = Math.max(600, Math.min(h, 1000)); // <- adjust limits here
+      if (clamped !== frameH) setFrameH(clamped);
     };
+
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
-  }, []);
+  }, [frameH]);
 
   return (
     <section id="contact" className="mx-auto max-w-6xl px-4 py-16">
@@ -50,7 +61,7 @@ export default function Contact({ email, phone, instagram }: Props) {
             title="Julio Strength Form"
             src={FORM_URL}
             className="w-full rounded-2xl"
-            style={{ minHeight: 720, border: "0" }}
+            style={{ height: frameH, border: 0 }}  // <- fixed height (clamped)
             allow="fullscreen; geolocation; microphone; camera"
           />
         </div>
