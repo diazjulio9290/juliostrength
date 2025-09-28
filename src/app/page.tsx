@@ -1,65 +1,94 @@
-// Data imports - importing all the content data for the page
-import coach from "@/data/coach";
-import plans from "@/data/plans";
-import testimonials from "@/data/testimonials";
-import transformations from "@/data/transformations";
-import faqs from "@/data/faqs";
+"use client";
 
-// Component imports - importing all the UI components
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Programs from "@/components/Programs";
-import Results from "@/components/Results";
-import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
+import { useState } from "react";
+import Link from "next/link";
 
-/**
- * Main page component for JulioStrength website
- * Renders the complete landing page with all sections
- */
-export default function Page() {
+// Public envs are baked at build time
+const STRIPE_READY =
+  process.env.NEXT_PUBLIC_STRIPE_READY === "true" &&
+  Boolean(process.env.NEXT_PUBLIC_DEFAULT_PRICE_ID);
+
+export default function CheckoutPage() {
+  const [agreed, setAgreed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  const priceId = process.env.NEXT_PUBLIC_DEFAULT_PRICE_ID || "price_placeholder";
+
+  async function startCheckout() {
+    if (!STRIPE_READY) return;
+    try {
+      setLoading(true);
+      setErr(null);
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ priceId, disclaimerVersion: "1.0" }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data?.url) {
+        setErr(data?.error ?? "Stripe is not ready yet.");
+        setLoading(false);
+        return;
+      }
+      window.location.href = data.url;
+    } catch (e: any) {
+      setErr(e?.message ?? "Unexpected error");
+      setLoading(false);
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100">
-      {/* Site header with navigation */}
-      <Header brand="JulioStrength" />
+    <main className="mx-auto max-w-3xl px-5 py-12">
+      <h1 className="text-3xl font-semibold">Checkout</h1>
 
-      {/* Hero section with coach intro and contact info */}
-      <Hero
-        name={coach.name}
-        tagline={coach.tagline}
-        location={coach.location}
-        email={coach.email}
-        instagram={coach.instagram}
-      />
+      {!STRIPE_READY && (
+        <div className="mt-4 rounded-xl border border-yellow-500/30 bg-yellow-500/10 p-4 text-yellow-200">
+          Payments are coming soon. In the meantime, you can{" "}
+          <Link href="/#contact" className="underline">contact us</Link>.
+        </div>
+      )}
 
-      {/* About section with coach background and highlights */}
-      <About
-        text="After serving in the U.S. Navy, I settled in Portland, Oregon, where I live with my family. I'm an amateur bodybuilder and online coach. I help busy people gain muscle, lose fat, and learn proper lifting mechanics. My approach blends progressive overload, smart periodization, and sustainable nutrition—no crash diets, no gimmicks."
-        highlights={coach.highlights}
-      />
+      <div className="mt-6 rounded-2xl border border-neutral-800 p-6 shadow-sm">
+        <h2 className="text-xl font-medium">Disclaimer &amp; Acknowledgment</h2>
+        <p className="mt-3 text-sm leading-6 text-neutral-300">
+          Coaching is educational and not medical advice. Results aren’t guaranteed.
+          Consult your physician before starting any fitness or nutrition program.
+          By proceeding, you release us from claims related to injuries or outcomes.
+        </p>
 
-      {/* Training programs and pricing plans */}
-      <Programs plans={plans} />
+        <label className="mt-4 flex items-start gap-2 text-sm text-neutral-200">
+          <input
+            type="checkbox"
+            className="mt-1"
+            checked={agreed}
+            onChange={(e) => setAgreed(e.target.checked)}
+            required
+          />
+          <span>I have read and agree to the <strong>Disclaimer</strong> above.</span>
+        </label>
 
-      {/* Client transformation results/before-after photos */}
-      <Results items={transformations} />
+        {err && <p className="mt-3 text-sm text-red-500">{err}</p>}
 
-      {/* Client testimonials and reviews */}
-      <Testimonials items={testimonials} />
+        <button
+          onClick={startCheckout}
+          disabled={!agreed || !STRIPE_READY || loading}
+          className={`mt-6 inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold text-white ${
+            !agreed || !STRIPE_READY || loading
+              ? "bg-neutral-700 cursor-not-allowed"
+              : "bg-black hover:bg-black/80"
+          }`}
+        >
+          {STRIPE_READY ? (loading ? "Redirecting…" : "Continue to Secure Payment")
+                        : "Payments coming soon"}
+        </button>
 
-      {/* Frequently asked questions section */}
-      <FAQ items={faqs} />
-
-      {/* Contact information and form */}
-      <Contact 
-        email={coach.email} 
-        phone={coach.phone} 
-        instagram={coach.instagram} 
-      />
-
-      {/* Site footer */}
-    </div>
+        <p className="mt-3 text-xs text-neutral-400">
+          You’ll be redirected to Stripe Checkout when payments are enabled.
+          See our <Link href="/terms" className="underline">Terms</Link> and{" "}
+          <Link href="/privacy" className="underline">Privacy</Link>.
+        </p>
+      </div>
+    </main>
   );
 }
