@@ -7,36 +7,26 @@ type Props = { email: string; phone: string; instagram: string };
 
 const FORM_URL = "https://form.jotform.com/252700973219054";
 
-// simple origin check for Jotform
-const jotformOrigin = (origin: string) =>
-  /^https?:\/\/([a-z0-9-]+\.)*jotform\.com$/i.test(new URL(origin).origin);
+// Heights tuned to show the form through the "Message" button, then stop.
+// Adjust if you want slightly more/less below the button.
+const DESKTOP_H = 690; // px
+const MOBILE_H  = 750; // px
 
 export default function Contact({ email, phone, instagram }: Props) {
-  const [frameH, setFrameH] = useState<number>(760); // default visible size
+  const [frameH, setFrameH] = useState(DESKTOP_H);
 
+  // Simple responsive height (no auto-resize from Jotform)
   useEffect(() => {
-    const onMessage = (e: MessageEvent) => {
-      if (typeof e.data !== "string") return;
-      if (!jotformOrigin(e.origin)) return;
-      if (!e.data.startsWith("setHeight")) return;
-
-      // Messages look like: "setHeight:{id}:{height}"
-      const parts = e.data.split(":");
-      const h = Number(parts.at(-1));
-      if (!Number.isFinite(h)) return;
-
-      // Clamp so it never runs away
-      const clamped = Math.max(600, Math.min(h, 1000)); // <- adjust limits here
-      if (clamped !== frameH) setFrameH(clamped);
-    };
-
-    window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
-  }, [frameH]);
+    const apply = () => setFrameH(window.innerWidth < 768 ? MOBILE_H : DESKTOP_H);
+    apply();
+    window.addEventListener("resize", apply);
+    return () => window.removeEventListener("resize", apply);
+  }, []);
 
   return (
     <section id="contact" className="mx-auto max-w-6xl px-4 py-16">
       <div className="grid md:grid-cols-2 gap-10 items-start">
+        {/* Left column */}
         <div>
           <h2 className="text-3xl md:text-4xl font-bold">Contact</h2>
           <p className="mt-3 text-neutral-300 max-w-prose">
@@ -49,21 +39,23 @@ export default function Contact({ email, phone, instagram }: Props) {
           </div>
           <p className="mt-6 text-xs text-neutral-500">
             Can’t see the form?{" "}
-            <a href={FORM_URL} target="_blank" rel="noreferrer" className="underline">Open it in a new tab</a>.{" "}
+            <a href={FORM_URL} target="_blank" rel="noreferrer" className="underline">open it in a new tab</a>.{" "}
             Read our <Link href="/terms" className="underline">Terms</Link> and{" "}
             <Link href="/privacy" className="underline">Privacy</Link>.
           </p>
         </div>
 
+        {/* Right column: fixed-height, overflow hidden */}
         <div className="rounded-3xl bg-white border border-neutral-800 p-1 overflow-hidden">
-          <iframe
-            id="jotform-iframe-home"
-            title="Julio Strength Form"
-            src={FORM_URL}
-            className="w-full rounded-2xl"
-            style={{ height: frameH, border: 0 }}  // <- fixed height (clamped)
-            allow="fullscreen; geolocation; microphone; camera"
-          />
+       <iframe
+  id="jotform-iframe-home"
+  title="Julio Strength Form"
+  src={FORM_URL}
+  className="w-full rounded-2xl"
+  style={{ height: frameH, border: 0 }}
+  scrolling="no"                               // <— hint; some browsers honor this
+  allow="geolocation; microphone; camera"
+/>
         </div>
       </div>
     </section>
