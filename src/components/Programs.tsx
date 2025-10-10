@@ -12,9 +12,7 @@ export default function Programs({ plans }: Props) {
     <section id="programs" className="mx-auto max-w-6xl px-4 py-16">
       <div className="flex items-end justify-between gap-4">
         <h2 className="text-3xl md:text-4xl font-bold">Programs & pricing</h2>
-        <p className="text-sm text-neutral-400">
-          Secure checkout via Stripe or PayPal
-        </p>
+        {/* Payment platforms not set up yet; directing users to Contact */}
       </div>
 
       <div className="mt-8 grid md:grid-cols-3 gap-6">
@@ -67,6 +65,10 @@ export default function Programs({ plans }: Props) {
           );
         })}
       </div>
+
+      <p className="mt-4 text-xs text-neutral-500">
+        Not medical advice. Train smart and consult your doctor if unsure. Results vary; no guarantees.
+      </p>
     </section>
   );
 }

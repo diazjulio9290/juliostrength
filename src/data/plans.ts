@@ -13,8 +13,8 @@ const plans: Plan[] = [
       "Habit tracking + monthly goals",
       "DM support (24–48h)",
     ],
-    cta: "Start monthly",
-    link: "#checkout-coaching-1m",
+    cta: "Contact to start",
+    link: "#contact",
   },
   {
     title: "1:1 Coaching — 3 Months",
@@ -27,8 +27,8 @@ const plans: Plan[] = [
       "DM support (24–48h)",
       "Save ~$27 vs month-to-month",
     ],
-    cta: "Start 3-month plan",
-    link: "#checkout-coaching-3m",
+    cta: "Contact to start",
+    link: "#contact",
     highlight: true, // Popular
   },
   {
@@ -42,8 +42,8 @@ const plans: Plan[] = [
       "DM support (24–48h)",
       "Save ~$114 vs month-to-month",
     ],
-    cta: "Start 6-month plan",
-    link: "#checkout-coaching-6m",
+    cta: "Contact to start",
+    link: "#contact",
   },
 ];
 

@@ -1,0 +1,53 @@
+.
+├── client1
+├── client2
+├── client3
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── images
+│   │   ├── branding
+│   │   ├── clients
+│   │   └── coach
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── README.md
+├── README.txt
+├── src
+│   ├── app
+│   │   ├── api
+│   │   │   └── checkout
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── thank-you
+│   │       └── page.tsx
+│   ├── components
+│   │   ├── About.tsx
+│   │   ├── Contact.tsx
+│   │   ├── FAQ.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Header.tsx
+│   │   ├── Hero.tsx
+│   │   ├── Programs.tsx
+│   │   ├── Results.tsx
+│   │   └── Testimonials.tsx
+│   └── data
+│       ├── coach.ts
+│       ├── faqs.ts
+│       ├── plans.ts
+│       ├── testimonials.ts
+│       ├── transformations.ts
+│       └── types.ts
+├── STRUCTURE.txt
+└── tsconfig.json
+
+16 directories, 35 files
