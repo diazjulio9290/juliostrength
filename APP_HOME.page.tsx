@@ -56,7 +56,6 @@ export default function Page() {
       {/* Contact information and form */}
       <Contact 
         email={coach.email} 
-        phone={coach.phone} 
         instagram={coach.instagram} 
       />
 
