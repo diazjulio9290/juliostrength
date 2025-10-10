@@ -20,7 +20,7 @@ const coach: Coach = {
   instagram: "https://www.instagram.com/juliostrength/?hl=en",
   bio: "After serving in the U.S. Navy, I settled in Portland, Oregon, where I live with my family. I’m an amateur bodybuilder and online coach. I help busy people gain muscle, lose fat, and learn proper lifting mechanics. My approach blends progressive overload, smart periodization, and sustainable nutrition—no crash diets, no gimmicks.",
   highlights: [
-    "4 years coaching experience",
+    "1+ years coaching experience",
     "Weekly physique check-ins & form reviews",
     "Custom training + nutrition + habit tracking",
   ],
