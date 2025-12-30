@@ -5,7 +5,7 @@ import Link from "next/link";
 
 type Props = { email: string; instagram: string };
 
-const CALENDLY_URL = "https://calendly.com/diazmoses99/30min";
+const CALENDLY_URL = "https://calendly.com/diazmoses99/15min";
 
 export default function Contact({ email, instagram }: Props) {
   // Load Calendly widget script
@@ -27,7 +27,7 @@ export default function Contact({ email, instagram }: Props) {
         <div>
           <h2 className="text-3xl md:text-4xl font-bold">Contact</h2>
           <p className="mt-3 text-neutral-300 max-w-prose">
-            Ready to start your fitness journey? Book a free 30-minute consultation — let&apos;s talk about your goals.
+            Ready to start your fitness journey? Book a free 15-minute consultation — let&apos;s talk about your goals.
           </p>
           <div className="mt-6 text-neutral-300">
             <div>
