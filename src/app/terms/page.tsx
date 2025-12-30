@@ -187,8 +187,12 @@ export default function TermsPage() {
           specific legal questions.
         </p>
 
-        <p>
-          Also see our <Link href="/privacy">Privacy Policy</Link> at <Link href="/privacy">/privacy</Link> and <Link href="/disclaimer">Disclaimer</Link> at <Link href="/disclaimer">/disclaimer</Link>.
+        <hr className="my-6 border-neutral-800" />
+
+        <p className="mt-8 text-sm text-neutral-400">
+          Also see our{' '}
+          <a href="/privacy" className="underline">Privacy Policy</a>,{' '}
+          <a href="/disclaimer" className="underline">Disclaimer</a>.
         </p>
       </article>
     </main>

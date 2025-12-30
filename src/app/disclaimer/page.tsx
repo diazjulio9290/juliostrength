@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function DisclaimerPage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-16">
@@ -184,8 +186,12 @@ export default function DisclaimerPage() {
           By using Julio Strength services, you acknowledge that you have read, understood, and agree to this Disclaimer.
         </p>
 
-        <p>
-          Also see our <a href="/terms">Terms of Service</a> at <a href="/terms">/terms</a> and <a href="/privacy">Privacy Policy</a> at <a href="/privacy">/privacy</a>.
+        <hr className="my-6 border-neutral-800" />
+
+        <p className="mt-8 text-sm text-neutral-400">
+          Also see our{' '}
+          <a href="/terms" className="underline">Terms of Service</a>,{' '}
+          <a href="/privacy" className="underline">Privacy Policy</a>.
         </p>
       </article>
     </main>
