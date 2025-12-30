@@ -8,6 +8,7 @@ export default function Footer({ brand }: { brand: string }) {
         <div className="flex gap-4">
           <Link href="/privacy" className="hover:opacity-80">Privacy</Link>
           <Link href="/terms" className="hover:opacity-80">Terms</Link>
+          <Link href="/disclaimer" className="hover:opacity-80">Disclaimer</Link>
         </div>
       </div>
     </footer>
