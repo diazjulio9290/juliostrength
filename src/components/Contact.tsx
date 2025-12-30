@@ -5,7 +5,7 @@ import Link from "next/link";
 
 type Props = { email: string; instagram: string };
 
-const CALENDLY_URL = "https://calendly.com/diazmoses99/15min";
+const CALENDLY_URL = "https://calendly.com/diazmoses99/15-minute-meeting-1-1";
 
 export default function Contact({ email, instagram }: Props) {
   // Load Calendly widget script
