@@ -3,13 +3,13 @@ import Link from "next/link";
 export default function TermsPage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-16">
-      <article className="prose prose-invert">
+      <article className="legal-content">
         <h1>Terms of Service</h1>
-        <p className="text-sm text-neutral-400">Last updated: December 30, 2025</p>
+        <p className="text-sm text-neutral-400">Last updated: June 4, 2026</p>
 
         <p>
-          By purchasing or using any services from Julio Strength ("we," "us," "our"), you ("Client," "you") agree to
-          these Terms. If you do not agree, do not use our services.
+          By purchasing or using any services from Julio Strength (&quot;we,&quot; &quot;us,&quot; &quot;our&quot;), you (&quot;Client,&quot; &quot;you&quot;)
+          agree to these Terms. If you do not agree, do not use our services.
         </p>
 
         <h2>Eligibility</h2>
@@ -25,9 +25,10 @@ export default function TermsPage() {
         </p>
 
         <p>
-          Julio is not a certified personal trainer (CPT), licensed physician, registered dietitian (RD/RDN), physical
-          therapist, or medical professional. Coaching is based on personal experience and self-education, not formal
-          certification. We do not diagnose, treat, cure, or prevent any disease or medical condition.
+          Julio is a NASM Certified Personal Trainer and NASM Certified Nutrition Coach. He is not a licensed physician,
+          registered dietitian (RD/RDN), physical therapist, or medical professional. Coaching is based on professional
+          certifications, personal experience, self-education, and continued study. We do not diagnose, treat, cure, or
+          prevent any disease or medical condition.
         </p>
 
         <p>
@@ -134,7 +135,7 @@ export default function TermsPage() {
 
         <h2>Disclaimer of Warranties</h2>
         <p>
-          The Services are provided "as is" and "as available" without warranties of any kind, either express or
+          The Services are provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind, either express or
           implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose,
           or non-infringement. We do not warrant that the Services will meet your specific requirements or produce any
           particular results.
@@ -172,14 +173,14 @@ export default function TermsPage() {
 
         <h2>Changes to Terms</h2>
         <p>
-          We may update these Terms from time to time. The "Last updated" date at the top will reflect the most recent
+          We may update these Terms from time to time. The &quot;Last updated&quot; date at the top will reflect the most recent
           revision. For material changes, we will provide additional notice (such as email notification). Your continued
           use of Services after changes constitutes acceptance of the revised Terms.
         </p>
 
         <h2>Contact</h2>
         <p>
-          Questions about these Terms? Email <a href="mailto:diazmoses99@gmail.com" className="underline">diazmoses99@gmail.com</a>
+          Questions about these Terms? <a href="mailto:diazmoses99@gmail.com" className="underline">Email</a>
         </p>
 
         <p className="mt-6">
@@ -198,4 +199,3 @@ export default function TermsPage() {
     </main>
   );
 }
-

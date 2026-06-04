@@ -43,34 +43,44 @@ export default function Results({ items }: { items: Collage[] }) {
 
   return (
     <section id="results" className="mx-auto max-w-6xl px-4 py-16">
-      <h2 className="text-3xl md:text-4xl font-bold">Client results</h2>
-      <p className="mt-3 text-neutral-300">
-        Real people. Consistent work. Evidence-based methods.
-      </p>
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-300">Proof of work</p>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">Client results</h2>
+        </div>
+        <p className="max-w-md text-neutral-300">
+          Real people. Consistent work. Evidence-based methods.
+        </p>
+      </div>
 
       {/* Thumbnails */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {safe.map((t, idx) => (
           <figure
             key={idx}
-            className="cursor-zoom-in rounded-3xl overflow-hidden bg-neutral-900 ring-1 ring-cyan-500/10 transition hover:ring-cyan-500/25"
+            className="group cursor-zoom-in overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 transition hover:border-cyan-400/50"
             onClick={() => setActive(idx)}
           >
             {/* Consistent tile height */}
-            <div className="relative h-[260px] md:h-[300px] lg:h-[280px] overflow-hidden">
+            <div className="relative h-[280px] overflow-hidden md:h-[320px] lg:h-[300px]">
               <Image
                 src={t.image}
                 alt={t.caption || `Client result ${idx + 1}`}
                 fill
                 className={`${t.fit === "contain" ? "object-contain" : "object-cover"} ${
                   t.focusClass || "object-center"
-                }`}
+                } transition duration-500 group-hover:scale-[1.03]`}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 priority={idx === 0}
               />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                <span className="rounded-full bg-white px-2 py-1 text-xs font-bold text-neutral-950">
+                  Result {idx + 1}
+                </span>
+              </div>
             </div>
             {t.caption && (
-              <figcaption className="px-4 pb-4 text-sm text-neutral-300">
+              <figcaption className="border-t border-neutral-800 px-4 py-3 text-sm text-neutral-300">
                 {t.caption}
               </figcaption>
             )}

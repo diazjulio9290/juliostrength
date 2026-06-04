@@ -27,8 +27,7 @@ export default function Page() {
         email={coach.email}
         instagram={coach.instagram}
       />
-      <About text="After serving in the U.S. Navy, I settled in Portland, Oregon, where I live with my family. I'm an amateur bodybuilder and online coach. I help busy people gain muscle, lose fat, and learn proper lifting mechanics. My approach blends progressive overload, smart periodization, and sustainable nutrition—no crash diets, no gimmicks."
-             highlights={coach.highlights} />
+      <About text={coach.bio} highlights={coach.highlights} />
       <Results items={transformations} />
       <Testimonials items={testimonials} />
       <Programs plans={plans} />

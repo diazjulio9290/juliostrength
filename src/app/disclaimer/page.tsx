@@ -1,11 +1,9 @@
-import Link from "next/link";
-
 export default function DisclaimerPage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-16">
-      <article className="prose prose-invert">
+      <article className="legal-content">
         <h1>Disclaimer</h1>
-        <p className="text-sm text-neutral-400">Last updated: December 30, 2025</p>
+        <p className="text-sm text-neutral-400">Last updated: June 4, 2026</p>
 
         <p>
           Please read this Disclaimer carefully before using any services from Julio Strength.
@@ -25,10 +23,9 @@ export default function DisclaimerPage() {
         </p>
 
         <h2>Not a Medical Professional</h2>
-        <p>Julio Diaz is not a:</p>
+        <p>Julio Diaz is a NASM Certified Personal Trainer and NASM Certified Nutrition Coach. He is not a:</p>
         <ul>
           <li>Licensed physician or medical doctor</li>
-          <li>Certified personal trainer (CPT)</li>
           <li>Registered dietitian (RD) or registered dietitian nutritionist (RDN)</li>
           <li>Licensed nutritionist</li>
           <li>Physical therapist</li>
@@ -36,8 +33,8 @@ export default function DisclaimerPage() {
         </ul>
 
         <p>
-          All coaching and guidance is based on personal experience, self-education, and individual research — not formal
-          certification or medical training.
+          All coaching and guidance is based on professional certifications, personal experience, self-education, and
+          individual research — not medical training.
         </p>
 
         <h2>Not Medical Advice</h2>
@@ -174,12 +171,12 @@ export default function DisclaimerPage() {
 
         <h2>Changes to This Disclaimer</h2>
         <p>
-          We may update this Disclaimer from time to time. The "Last updated" date at the top will reflect the most recent revision.
+          We may update this Disclaimer from time to time. The &quot;Last updated&quot; date at the top will reflect the most recent revision.
         </p>
 
         <h2>Contact</h2>
         <p>
-          Questions about this Disclaimer? Email <a href="mailto:diazmoses99@gmail.com" className="underline">diazmoses99@gmail.com</a>
+          Questions about this Disclaimer? <a href="mailto:diazmoses99@gmail.com" className="underline">Email</a>
         </p>
 
         <p>
@@ -197,5 +194,3 @@ export default function DisclaimerPage() {
     </main>
   );
 }
-
-

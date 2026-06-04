@@ -21,24 +21,25 @@ export default function Contact({ email, instagram }: Props) {
   }, []);
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-4 py-16">
-      <div className="grid md:grid-cols-2 gap-10 items-start">
+    <section id="contact" className="border-t border-neutral-900 bg-neutral-950">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[0.8fr_1.2fr] md:items-start">
         {/* Left column */}
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold">Contact</h2>
-          <p className="mt-3 text-neutral-300 max-w-prose">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-300">Start here</p>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">Contact</h2>
+          <p className="mt-4 max-w-prose leading-7 text-neutral-300">
             Ready to start your fitness journey? Book a free 15-minute consultation — let&apos;s talk about your goals.
           </p>
-          <div className="mt-6 text-neutral-300">
-            <div>
-              📧{" "}
-              <a className="underline underline-offset-4" href={`mailto:${email}`}>
-                {email}
+          <div className="mt-6 space-y-3 text-neutral-300">
+            <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
+              <div className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">Email</div>
+              <a className="mt-1 block underline underline-offset-4" href={`mailto:${email}`}>
+                Email
               </a>
             </div>
-            <div className="mt-1">
-              📸{" "}
-              <a className="underline underline-offset-4" href={instagram} target="_blank" rel="noreferrer">
+            <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
+              <div className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">Social</div>
+              <a className="mt-1 block underline underline-offset-4" href={instagram} target="_blank" rel="noreferrer">
                 Instagram
               </a>
             </div>
@@ -55,7 +56,7 @@ export default function Contact({ email, instagram }: Props) {
 
         {/* Right column: Calendly inline widget */}
         <div
-          className="calendly-inline-widget rounded-3xl overflow-hidden"
+          className="calendly-inline-widget overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900"
           data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=3b82f6`}
           style={{ minWidth: "320px", height: "700px" }}
         />

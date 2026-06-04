@@ -5,7 +5,7 @@ type Props = { brand: string };
 
 export default function Header({ brand }: Props) {
   return (
-    <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/70">
+    <header className="sticky top-0 z-50 border-b border-white/5 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/75">
       <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
         <Link href="/#top" className="font-bold text-xl tracking-tight">
           {brand}
@@ -34,7 +34,7 @@ export default function Header({ brand }: Props) {
         <Link
           href="/#programs"
           aria-label="View coaching programs and pricing"
-          className="md:inline-block hidden relative rounded-xl px-4 py-2 font-semibold text-neutral-950
+          className="md:inline-block hidden relative rounded-lg px-4 py-2 font-semibold text-neutral-950
                      bg-gradient-to-r from-cyan-400 to-emerald-400
                      hover:from-cyan-300 hover:to-emerald-300
                      transition-all duration-200

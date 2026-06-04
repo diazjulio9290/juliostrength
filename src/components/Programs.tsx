@@ -10,8 +10,14 @@ const formatPrice = (n: number) =>
 export default function Programs({ plans }: Props) {
   return (
     <section id="programs" className="mx-auto max-w-6xl px-4 py-16">
-      <div className="flex items-end justify-between gap-4">
-        <h2 className="text-3xl md:text-4xl font-bold">Programs & pricing</h2>
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-300">Coaching options</p>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">Programs & pricing</h2>
+        </div>
+        <p className="max-w-sm text-sm text-neutral-400">
+          Choose the runway that matches your goal and timeline.
+        </p>
         {/* Payment platforms not set up yet; directing users to Contact */}
       </div>
 
@@ -21,19 +27,20 @@ export default function Programs({ plans }: Props) {
           return (
             <div
               key={p.title}
-              className={`rounded-3xl p-6 border transition-colors ${
+              className={`relative rounded-lg p-6 border transition-colors ${
                 isHot
-                  ? "border-cyan-400/40 bg-neutral-900"
+                  ? "border-cyan-400/60 bg-neutral-900 shadow-[0_0_36px_rgba(34,211,238,0.12)]"
                   : "border-neutral-800 bg-neutral-950 hover:border-neutral-700"
               }`}
             >
-              <div className="flex items-baseline justify-between">
+              {isHot && (
+                <div className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 px-3 py-1 text-xs font-bold text-neutral-950">
+                  Popular
+                </div>
+              )}
+
+              <div>
                 <h3 className="text-xl font-bold">{p.title}</h3>
-                {isHot && (
-                  <span className="text-xs text-neutral-950 px-2 py-1 rounded-full font-semibold bg-gradient-to-r from-cyan-400 to-emerald-400">
-                    Popular
-                  </span>
-                )}
               </div>
 
               <div className="mt-4">
@@ -48,7 +55,7 @@ export default function Programs({ plans }: Props) {
               <ul className="mt-4 space-y-2 text-neutral-300">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <span>✔</span>
+                    <span className="mt-1 inline-block h-2 w-2 shrink-0 rounded-full bg-cyan-300" />
                     <span>{f}</span>
                   </li>
                 ))}
@@ -56,7 +63,7 @@ export default function Programs({ plans }: Props) {
 
               <a
                 href={p.link}
-                className="mt-6 inline-block w-full text-center rounded-xl font-semibold px-4 py-3
+                className="mt-6 inline-block w-full text-center rounded-lg font-semibold px-4 py-3
                            text-neutral-950 bg-gradient-to-r from-cyan-400 to-emerald-400 hover:opacity-90"
               >
                 {p.cta}
