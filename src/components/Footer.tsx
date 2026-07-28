@@ -2,34 +2,18 @@ import Link from "next/link";
 
 export default function Footer({ brand }: { brand: string }) {
   return (
-    <footer className="relative border-t border-white/[0.06]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-px mx-auto h-px max-w-3xl bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent"
-      />
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 px-4 py-12 text-sm text-neutral-500 md:flex-row md:px-6">
-        <div className="flex items-center gap-2.5">
-          <span
-            aria-hidden
-            className="grid h-6 w-6 place-items-center rounded-lg bg-gradient-to-br from-cyan-400 to-emerald-400 font-display text-[11px] font-bold text-neutral-950"
-          >
-            J
+    <footer className="border-t border-white/10 bg-background/80">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-4 py-10 text-sm text-neutral-400 sm:px-6 md:flex-row">
+        <div className="flex items-center gap-3">
+          <span className="grid h-8 w-8 place-items-center rounded-2xl bg-gradient-to-br from-accent to-accent-2 text-xs font-black text-neutral-950">
+            JS
           </span>
-          <span>
-            © {new Date().getFullYear()}{" "}
-            <span className="font-medium text-neutral-300">{brand}</span>. All rights reserved.
-          </span>
+          <span>© {new Date().getFullYear()} {brand}. All rights reserved.</span>
         </div>
-        <div className="flex gap-7">
-          <Link href="/privacy" className="transition-colors duration-200 hover:text-white">
-            Privacy
-          </Link>
-          <Link href="/terms" className="transition-colors duration-200 hover:text-white">
-            Terms
-          </Link>
-          <Link href="/disclaimer" className="transition-colors duration-200 hover:text-white">
-            Disclaimer
-          </Link>
+        <div className="flex gap-5">
+          <Link href="/privacy" className="transition hover:text-accent-2">Privacy</Link>
+          <Link href="/terms" className="transition hover:text-accent-2">Terms</Link>
+          <Link href="/disclaimer" className="transition hover:text-accent-2">Disclaimer</Link>
         </div>
       </div>
     </footer>

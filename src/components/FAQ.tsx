@@ -2,18 +2,22 @@ import type { Faq } from "@/data/types";
 
 export default function FAQ({ items }: { items: Faq[] }) {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-20 md:px-6 lg:py-24">
-      <p className="eyebrow">Common questions</p>
-      <h2 className="mt-4 font-display text-3xl font-bold tracking-[-0.02em] text-white md:text-[2.6rem]">
-        FAQ
-      </h2>
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {items.map((f, i) => (
-          <div key={i} className="card-glass card-glass-hover p-7">
-            <div className="font-display font-semibold leading-6 text-white">{f.q}</div>
-            <div className="mt-3 text-sm leading-7 text-neutral-400">{f.a}</div>
-          </div>
-        ))}
+    <section id="faq" className="border-t border-white/10 bg-white/[0.02]">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
+        <p className="kicker">Quick answers</p>
+        <div className="mt-4 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <h2 className="text-3xl font-black tracking-[-0.04em] md:text-5xl">FAQ</h2>
+          <p className="max-w-md text-neutral-300">The basics before you book your free consult.</p>
+        </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {items.map((f, i) => (
+            <article key={`${f.q}-${i}`} className="glass-card rounded-[2rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-accent/30">
+              <div className="relative text-lg font-black tracking-[-0.02em] text-white">{f.q}</div>
+              <p className="relative mt-3 leading-7 text-neutral-300">{f.a}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -8,116 +8,99 @@ type Props = {
   instagram: string;
 };
 
-export default function Hero({
-  name,
-  tagline,
-  location,
-  email,
-  instagram,
-}: Props) {
+export default function Hero({ name, tagline, location, email, instagram }: Props) {
   return (
-    <section id="top" className="relative overflow-hidden">
-      {/* decorative backdrop */}
-      <div aria-hidden className="bg-grid pointer-events-none absolute inset-0" />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-32 right-[-10%] h-[26rem] w-[26rem] rounded-full bg-cyan-500/10 blur-[120px]"
-      />
+    <section id="top" className="relative mx-auto max-w-7xl px-4 pb-20 pt-14 sm:px-6 lg:pb-28 lg:pt-20">
+      <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" aria-hidden="true" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 md:grid-cols-[1fr_0.92fr] md:px-6 md:py-24">
-        <div className="max-w-2xl">
-          <p className="animate-rise mb-6 inline-flex items-center gap-2.5 rounded-full border border-cyan-400/20 bg-white/[0.03] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-200 backdrop-blur-md">
-            <span aria-hidden className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            Online coaching from Portland, OR
-          </p>
+      <div className="relative grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.72rem] font-extrabold uppercase tracking-[0.18em] text-accent-2">
+            <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_18px_rgba(216,255,77,0.9)]" />
+            Online coaching • {location}
+          </div>
 
-          <h1 className="animate-rise rise-1 font-display text-5xl font-bold leading-[1.02] tracking-[-0.03em] text-white md:text-7xl">
-            Build muscle. Drop fat.{" "}
-            <span className="text-gradient">Do it right.</span>
+          <h1 className="mt-6 max-w-3xl text-5xl font-black leading-[0.94] tracking-[-0.06em] sm:text-6xl lg:text-7xl">
+            Build muscle. Drop fat. <span className="text-gradient">Lift with intent.</span>
           </h1>
 
-          <p className="animate-rise rise-2 mt-7 max-w-xl text-lg leading-8 text-neutral-300/90">
-            {tagline}. {location}. Programs that actually fit your life:
-            evidence-based training, realistic nutrition, and weekly feedback to
-            keep you progressing.
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-300">
+            {tagline}. Evidence-based training, realistic nutrition, and weekly feedback — built for busy people who
+            want progress without gimmicks.
           </p>
 
-          <div className="animate-rise rise-3 mt-9 flex flex-wrap items-center gap-3.5">
-            <a href="#programs" className="btn-primary group px-6 py-3 text-[15px]">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#programs" className="btn-primary">
               See programs
-              <span
-                aria-hidden
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
-              </span>
             </a>
-            <a href="#contact" className="btn-ghost px-6 py-3 text-[15px]">
-              Contact
+            <a href="#contact" className="btn-secondary">
+              Book a free consult
             </a>
           </div>
 
-          <div className="animate-rise rise-4 mt-10 grid max-w-xl grid-cols-3 divide-x divide-white/[0.07] rounded-2xl border border-white/[0.07] bg-white/[0.02] text-sm backdrop-blur-md">
-            <div className="px-5 py-4">
-              <div className="font-display text-lg font-bold text-white">2 years</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.12em] text-neutral-500">Coaching</div>
-            </div>
-            <div className="px-5 py-4">
-              <div className="font-display text-lg font-bold text-white">NASM</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.12em] text-neutral-500">CPT + CNC</div>
-            </div>
-            <div className="px-5 py-4">
-              <div className="font-display text-lg font-bold text-white">Weekly</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.12em] text-neutral-500">Check-ins</div>
-            </div>
-          </div>
-
-          <div className="animate-rise rise-5 mt-6 flex items-center gap-2 text-sm text-neutral-400">
+          <div className="mt-7 flex flex-wrap gap-3 text-sm text-neutral-300">
             <a
-              className="rounded-full px-3 py-1 transition-colors duration-200 hover:bg-white/[0.05] hover:text-cyan-200"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 transition hover:border-accent/50 hover:text-white"
               href={instagram}
               target="_blank"
               rel="noreferrer"
             >
               Instagram
             </a>
-            <span aria-hidden className="h-1 w-1 rounded-full bg-neutral-700" />
             <a
-              className="rounded-full px-3 py-1 transition-colors duration-200 hover:bg-white/[0.05] hover:text-cyan-200"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 transition hover:border-accent/50 hover:text-white"
               href={`mailto:${email}`}
             >
-              Email
+              Email Julio
             </a>
+          </div>
+
+          <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
+            <div className="glass-card rounded-3xl p-4">
+              <div className="relative text-2xl font-black text-white">2 yrs</div>
+              <div className="relative mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted">Coaching</div>
+            </div>
+            <div className="glass-card rounded-3xl p-4">
+              <div className="relative text-2xl font-black text-white">NASM</div>
+              <div className="relative mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted">CPT + CNC</div>
+            </div>
+            <div className="glass-card rounded-3xl p-4">
+              <div className="relative text-2xl font-black text-white">Weekly</div>
+              <div className="relative mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted">Check-ins</div>
+            </div>
           </div>
         </div>
 
-        <div className="animate-rise rise-2 relative">
-          {/* glow behind portrait */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -inset-5 rounded-[2rem] bg-gradient-to-tr from-cyan-500/25 via-transparent to-emerald-500/20 blur-2xl"
-          />
-          <div className="relative h-[520px] w-full overflow-hidden rounded-3xl bg-neutral-900 shadow-[0_30px_80px_-24px_rgba(0,0,0,0.9)] ring-1 ring-white/10 md:h-[560px]">
-            <Image
-              src="/images/coach/hero.jpg"
-              alt={`Coach — ${name}`}
-              width={900}
-              height={1125}
-              className="h-full w-full object-cover"
-              priority
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
-            />
-            <div className="absolute inset-x-3 bottom-3 rounded-2xl border border-white/10 bg-neutral-950/55 p-4 backdrop-blur-md">
-              <p className="font-display text-sm font-semibold text-white">Coach Julio</p>
-              <p className="mt-1 text-xs leading-5 text-neutral-300">
-                Bodybuilding-focused training and nutrition guidance
-              </p>
+        <div className="relative">
+          <div className="absolute -inset-5 rounded-[2.75rem] bg-gradient-to-br from-accent/25 via-transparent to-accent-2/25 blur-2xl" aria-hidden="true" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] shadow-2xl">
+            <div className="relative h-[540px] sm:h-[620px] lg:h-[660px]">
+              <Image
+                src="/images/coach/hero.jpg"
+                alt={`Coach — ${name}`}
+                width={900}
+                height={1125}
+                className="h-full w-full object-cover object-center"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+
+              <div className="absolute left-5 top-5 rounded-3xl border border-white/10 bg-background/70 px-4 py-3 backdrop-blur-xl">
+                <div className="text-xs font-extrabold uppercase tracking-[0.16em] text-accent-2">Coach Julio</div>
+                <div className="mt-1 text-sm font-semibold text-white">Bodybuilding-focused online coaching</div>
+              </div>
+
+              <div className="absolute bottom-5 left-5 right-5 rounded-[1.75rem] border border-white/10 bg-background/75 p-5 backdrop-blur-xl">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <div className="text-sm font-black text-white">Training + nutrition + accountability</div>
+                    <div className="mt-1 text-sm text-neutral-300">Custom plans, form reviews, and habit tracking.</div>
+                  </div>
+                  <a href="#contact" className="btn-primary">
+                    Start now
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

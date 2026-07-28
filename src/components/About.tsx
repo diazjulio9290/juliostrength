@@ -5,43 +5,48 @@ type Props = {
 
 export default function About({ text, highlights }: Props) {
   const [experience, education, nutrition, trainer, ...support] = highlights;
+  const credentials = [education, nutrition, trainer].filter(Boolean) as string[];
 
   return (
-    <section id="about" className="border-y border-white/[0.06] bg-white/[0.015]">
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 md:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:py-24">
+    <section id="about" className="relative border-y border-white/10 bg-white/[0.03]">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:py-24">
         <div>
-          <p className="eyebrow">Credentials</p>
-          <h2 className="mt-4 font-display text-3xl font-bold tracking-[-0.02em] text-white md:text-[2.6rem] md:leading-[1.08]">
+          <p className="kicker">Credentials</p>
+          <h2 className="mt-4 max-w-xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
             Coaching built on reps, study, and accountability.
           </h2>
-          <p className="mt-6 max-w-prose leading-8 text-neutral-300/90">{text}</p>
+          <p className="mt-6 max-w-prose text-lg leading-8 text-neutral-300">{text}</p>
+          <div className="mt-8 rounded-[2rem] border border-white/10 bg-background/55 p-5 text-sm leading-7 text-neutral-300">
+            <span className="font-black text-white">The standard:</span> progressive overload, smart periodization,
+            sustainable nutrition, and honest weekly feedback. No crash diets. No gimmicks.
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="relative overflow-hidden rounded-2xl border border-cyan-400/25 bg-gradient-to-br from-cyan-400/[0.14] via-cyan-400/[0.04] to-emerald-400/[0.1] p-6 shadow-[0_0_40px_-12px_rgba(34,211,238,0.25)]">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -top-10 -right-10 h-28 w-28 rounded-full bg-cyan-400/20 blur-2xl"
-            />
-            <div className="font-display text-5xl font-bold leading-none text-gradient">2</div>
-            <div className="mt-3 text-sm font-medium text-cyan-100/90">
-              {experience?.replace("2 ", "")}
+          <div className="glass-card rounded-[2rem] p-6 sm:col-span-2">
+            <div className="relative flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <div className="text-5xl font-black tracking-[-0.06em] text-white">2</div>
+                <div className="mt-2 text-sm font-bold text-accent-2">{experience?.replace("2 ", "")}</div>
+              </div>
+              <div className="rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-accent">
+                Hands-on coaching
+              </div>
             </div>
           </div>
-          {[education, nutrition, trainer].filter(Boolean).map((item) => (
-            <div key={item} className="card-glass card-glass-hover p-6">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
-                {item?.startsWith("NASM") ? "Certification" : "Education"}
+
+          {credentials.map((item) => (
+            <div key={item} className="glass-card rounded-[2rem] p-6">
+              <div className="relative text-xs font-extrabold uppercase tracking-[0.16em] text-muted">
+                {item.startsWith("NASM") ? "Certification" : "Education"}
               </div>
-              <div className="mt-3 font-medium leading-6 text-neutral-100">{item}</div>
+              <div className="relative mt-4 text-lg font-black leading-snug text-white">{item}</div>
             </div>
           ))}
+
           {support.map((item) => (
-            <div
-              key={item}
-              className="card-glass card-glass-hover p-6 text-sm leading-6 text-neutral-300"
-            >
-              {item}
+            <div key={item} className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 text-neutral-300">
+              <div className="text-sm font-semibold leading-7">{item}</div>
             </div>
           ))}
         </div>

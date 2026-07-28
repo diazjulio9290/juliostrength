@@ -3,62 +3,84 @@ import coach from "@/data/coach";
 
 type Props = { brand: string };
 
-const navLinkClass =
-  "relative text-neutral-400 transition-colors duration-200 hover:text-white " +
-  "after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 " +
-  "after:bg-gradient-to-r after:from-cyan-400 after:to-emerald-400 " +
-  "after:transition-all after:duration-300 hover:after:w-full";
+const navItems = [
+  { href: "/#about", label: "About" },
+  { href: "/#results", label: "Results" },
+  { href: "/#programs", label: "Programs" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/#contact", label: "Contact" },
+];
 
 export default function Header({ brand }: Props) {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-neutral-950/60 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-neutral-950/50">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 md:px-6">
-        <Link
-          href="/#top"
-          className="group flex items-center gap-2.5 text-lg font-bold tracking-tight text-white"
-        >
-          <span
-            aria-hidden
-            className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 to-emerald-400 font-display text-sm font-bold text-neutral-950 shadow-[0_0_22px_rgba(34,211,238,0.4)] transition-transform duration-300 group-hover:rotate-[-6deg] group-hover:scale-105"
-          >
-            J
-          </span>
-          <span className="font-display">{brand}</span>
-        </Link>
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex h-16 items-center justify-between gap-3">
+          <Link href="/#top" className="group flex items-center gap-3 font-black tracking-tight">
+            <span className="grid h-9 w-9 place-items-center rounded-2xl bg-gradient-to-br from-accent to-accent-2 text-sm text-neutral-950 shadow-[0_10px_30px_rgba(216,255,77,0.22)]">
+              JS
+            </span>
+            <span className="text-lg">{brand}</span>
+          </Link>
 
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
-          <Link href="/#about" className={navLinkClass}>About</Link>
-          <Link href="/#programs" className={navLinkClass}>Programs</Link>
-          <Link href="/#results" className={navLinkClass}>Results</Link>
-          <Link href="/#testimonials" className={navLinkClass}>Testimonials</Link>
-          <Link href="/#contact" className={navLinkClass}>Contact</Link>
-
-          {coach.instagram && (
-            <a
-              href={coach.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-1 border-l border-white/10 pl-6 text-neutral-400 transition-colors duration-200 hover:text-white"
-              aria-label="Open Instagram (new tab)"
-            >
-              Instagram
-              <span
-                aria-hidden
-                className="text-[10px] text-neutral-500 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cyan-300"
+          <nav className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 text-sm text-neutral-300 md:flex">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-full px-3.5 py-2 transition hover:bg-white/10 hover:text-white"
               >
-                ↗
-              </span>
-            </a>
-          )}
-        </nav>
+                {item.label}
+              </Link>
+            ))}
+            {coach.instagram && (
+              <a
+                href={coach.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full px-3.5 py-2 text-neutral-300 transition hover:bg-white/10 hover:text-white"
+                aria-label="Open Instagram (new tab)"
+              >
+                Instagram
+              </a>
+            )}
+          </nav>
 
-        <Link
-          href="/#programs"
-          aria-label="View coaching programs and pricing"
-          className="btn-primary px-4 py-2 text-sm md:px-5 md:py-2.5"
-        >
-          Work with me
-        </Link>
+          <div className="hidden md:block">
+            <Link href="/#programs" aria-label="View coaching programs and pricing" className="btn-primary">
+              Work with me
+            </Link>
+          </div>
+
+          <details className="relative md:hidden">
+            <summary className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-full border border-white/10 bg-white/5 text-xl text-white [&::-webkit-details-marker]:hidden">
+              <span className="sr-only">Open menu</span>
+              <span aria-hidden="true">☰</span>
+            </summary>
+            <div className="absolute right-0 top-12 w-60 rounded-3xl border border-white/10 bg-[#070b12]/95 p-3 shadow-2xl backdrop-blur-xl">
+              <div className="grid gap-1 text-sm text-neutral-200">
+                {navItems.map((item) => (
+                  <Link key={item.href} href={item.href} className="rounded-2xl px-3 py-2.5 hover:bg-white/10">
+                    {item.label}
+                  </Link>
+                ))}
+                {coach.instagram && (
+                  <a
+                    href={coach.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-2xl px-3 py-2.5 hover:bg-white/10"
+                  >
+                    Instagram
+                  </a>
+                )}
+                <Link href="/#programs" className="btn-primary btn-block mt-2">
+                  Work with me
+                </Link>
+              </div>
+            </div>
+          </details>
+        </div>
       </div>
     </header>
   );
