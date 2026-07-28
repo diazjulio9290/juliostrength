@@ -18,7 +18,7 @@ import Footer from "@/components/Footer";
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100">
+    <div className="min-h-screen text-neutral-100">
       <Header brand="JulioStrength" />
       <Hero
         name={coach.name}
