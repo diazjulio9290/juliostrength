@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+Dockerfile
+.dockerignore
+npm-debug.log
+
+# Generated preview snapshot
+_next
+images
+index.html
+privacy
+terms
+disclaimer
+thank-you
+favicon.ico

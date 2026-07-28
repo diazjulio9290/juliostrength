@@ -5,32 +5,48 @@ type Props = {
 
 export default function About({ text, highlights }: Props) {
   const [experience, education, nutrition, trainer, ...support] = highlights;
+  const credentials = [education, nutrition, trainer].filter(Boolean) as string[];
 
   return (
-    <section id="about" className="border-y border-neutral-900 bg-neutral-950/70">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-[0.95fr_1.05fr]">
+    <section id="about" className="relative border-y border-white/10 bg-white/[0.03]">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:py-24">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-300">Credentials</p>
-          <h2 className="mt-3 text-3xl font-bold md:text-4xl">Coaching built on reps, study, and accountability.</h2>
-          <p className="mt-6 max-w-prose leading-7 text-neutral-300">{text}</p>
+          <p className="kicker">Credentials</p>
+          <h2 className="mt-4 max-w-xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
+            Coaching built on reps, study, and accountability.
+          </h2>
+          <p className="mt-6 max-w-prose text-lg leading-8 text-neutral-300">{text}</p>
+          <div className="mt-8 rounded-[2rem] border border-white/10 bg-background/55 p-5 text-sm leading-7 text-neutral-300">
+            <span className="font-black text-white">The standard:</span> progressive overload, smart periodization,
+            sustainable nutrition, and honest weekly feedback. No crash diets. No gimmicks.
+          </div>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-lg border border-cyan-400/30 bg-cyan-400/10 p-5">
-            <div className="text-3xl font-extrabold text-white">2</div>
-            <div className="mt-2 text-sm font-medium text-cyan-100">{experience?.replace("2 ", "")}</div>
-          </div>
-          {[education, nutrition, trainer].filter(Boolean).map((item) => (
-            <div key={item} className="rounded-lg border border-neutral-800 bg-neutral-900 p-5">
-              <div className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                {item?.startsWith("NASM") ? "Certification" : "Education"}
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="glass-card rounded-[2rem] p-6 sm:col-span-2">
+            <div className="relative flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <div className="text-5xl font-black tracking-[-0.06em] text-white">2</div>
+                <div className="mt-2 text-sm font-bold text-accent-2">{experience?.replace("2 ", "")}</div>
               </div>
-              <div className="mt-3 font-semibold text-neutral-100">{item}</div>
+              <div className="rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-accent">
+                Hands-on coaching
+              </div>
+            </div>
+          </div>
+
+          {credentials.map((item) => (
+            <div key={item} className="glass-card rounded-[2rem] p-6">
+              <div className="relative text-xs font-extrabold uppercase tracking-[0.16em] text-muted">
+                {item.startsWith("NASM") ? "Certification" : "Education"}
+              </div>
+              <div className="relative mt-4 text-lg font-black leading-snug text-white">{item}</div>
             </div>
           ))}
+
           {support.map((item) => (
-            <div key={item} className="rounded-lg border border-neutral-800 bg-neutral-950 p-5 text-neutral-300">
-              {item}
+            <div key={item} className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 text-neutral-300">
+              <div className="text-sm font-semibold leading-7">{item}</div>
             </div>
           ))}
         </div>
