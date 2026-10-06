@@ -5,7 +5,7 @@ export default function TermsPage() {
     <main className="mx-auto max-w-3xl px-4 py-16">
       <article className="legal-content">
         <h1>Terms of Service</h1>
-        <p className="text-sm text-neutral-400">Last updated: June 4, 2026</p>
+        <p className="text-sm text-neutral-400">Last updated: October 5, 2026</p>
 
         <p>
           By purchasing or using any services from Julio Strength (&quot;we,&quot; &quot;us,&quot; &quot;our&quot;), you (&quot;Client,&quot; &quot;you&quot;)
@@ -107,8 +107,9 @@ export default function TermsPage() {
 
         <h3>1:1 Coaching</h3>
         <p>
-          Renews monthly on your start date. You may cancel any time before your next billing cycle begins. Access
-          continues through the end of your current paid period.
+          Coaching is offered as 3, 6, or 12 month packages. Your package begins on your start date and runs for the
+          full length of the plan you choose. Packages do not renew automatically; when yours ends, you can sign up for
+          a new one to keep going. Access continues through the end of your paid package.
         </p>
 
         <h3>Scheduling &amp; Communication</h3>
