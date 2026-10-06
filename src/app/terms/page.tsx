@@ -109,7 +109,8 @@ export default function TermsPage() {
         <p>
           Coaching is offered as 3, 6, or 12 month packages. Your package begins on your start date and runs for the
           full length of the plan you choose. Packages do not renew automatically; when yours ends, you can sign up for
-          a new one to keep going. Access continues through the end of your paid package.
+          a new one to keep going. Access continues through the end of your paid package. All coaching packages are
+          non-refundable, including if you choose to stop before your package ends.
         </p>
 
         <h3>Scheduling &amp; Communication</h3>
