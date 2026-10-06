@@ -148,8 +148,8 @@ export default function TermsPage() {
           To the fullest extent permitted by law, Julio Strength and its owner shall not be liable for any indirect,
           incidental, special, consequential, or punitive damages; loss of profits, data, or goodwill; personal injury or
           property damage; or any damages arising from your use of or inability to use the Services. Our total liability
-          for any claim related to the Services shall not exceed the amount you paid for the month in which the claim
-          arose.
+          for any claim related to the Services shall not exceed the amount you paid for your current coaching
+          package.
         </p>
 
         <h2>Indemnification</h2>
